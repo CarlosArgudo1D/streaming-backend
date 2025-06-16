@@ -129,6 +129,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -136,7 +140,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../series",
@@ -146,6 +150,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -154,8 +159,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"SERIES_DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../../prisma/generated/series\"\n}\n\nmodel Series {\n  id        Int @id @default(autoincrement())\n  seasons   Int\n  contentId Int\n}\n",
-  "inlineSchemaHash": "304fb07e3e1dcc746e2efbc1d802f6d31f12038831a5e4c20059d1eaed5d7434",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"SERIES_DATABASE_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../../prisma/generated/series\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\nmodel Series {\n  id        Int @id @default(autoincrement())\n  seasons   Int\n  contentId Int\n}\n",
+  "inlineSchemaHash": "6e3bd4799dece232dc5886d64cf68fb6c39c778592f25545c3ef9dc56dc7237c",
   "copyEngine": true
 }
 config.dirname = '/'

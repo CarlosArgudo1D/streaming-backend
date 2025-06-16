@@ -145,6 +145,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -152,7 +156,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../contents",
@@ -162,6 +166,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -170,8 +175,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"CONTENT_DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../../prisma/generated/contents\"\n}\n\nmodel Content {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String\n  type        String // movie or series\n  createdAt   DateTime @default(now())\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  email    String @unique\n  password String\n  role     String\n}\n",
-  "inlineSchemaHash": "612c33091b4c8a3fbf34cb872ac2b3075668e4b7f3fe2acba9b1a1a6933c9933",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"CONTENT_DATABASE_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../../prisma/generated/contents\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\nmodel Content {\n  id          Int      @id @default(autoincrement())\n  title       String\n  description String\n  type        String // movie or series\n  createdAt   DateTime @default(now())\n}\n\nmodel User {\n  id       Int    @id @default(autoincrement())\n  email    String @unique\n  password String\n  role     String\n}\n",
+  "inlineSchemaHash": "0a94ed79f4f0d1226d4159c64aab733b3000e3d2d668f4226774cd6f8afaaaff",
   "copyEngine": true
 }
 
@@ -212,6 +217,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "prisma/generated/contents/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "prisma/generated/contents/libquery_engine-debian-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/contents/schema.prisma")

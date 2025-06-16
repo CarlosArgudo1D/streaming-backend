@@ -130,6 +130,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -137,7 +141,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../../.env",
+    "rootEnvPath": null,
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../../movies",
@@ -147,6 +151,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -155,8 +160,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"MOVIE_DATABASE_URL\")\n}\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../../prisma/generated/movies\"\n}\n\nmodel Movie {\n  id        Int @id @default(autoincrement())\n  duration  Int\n  contentId Int\n}\n",
-  "inlineSchemaHash": "8e941fbe63de7420dd4e19dac328d39063fbc4dba2de0f8bd286cb9b2831450f",
+  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"MOVIE_DATABASE_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../../prisma/generated/movies\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n}\n\nmodel Movie {\n  id        Int @id @default(autoincrement())\n  duration  Int\n  contentId Int\n}\n",
+  "inlineSchemaHash": "26b2bc58d78710a7ad19e951e4264af7cae448dd9f0308a91c2dc9b25fbc93d5",
   "copyEngine": true
 }
 
@@ -197,6 +202,10 @@ Object.assign(exports, Prisma)
 // file annotations for bundling tools to include these files
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "prisma/generated/movies/query_engine-windows.dll.node")
+
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "prisma/generated/movies/libquery_engine-debian-openssl-3.0.x.so.node")
 // file annotations for bundling tools to include these files
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "prisma/generated/movies/schema.prisma")

@@ -1,0 +1,15 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("MOVIE_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../prisma/generated/movies"
+}
+
+model Movie {
+  id        Int @id @default(autoincrement())
+  duration  Int
+  contentId Int
+}

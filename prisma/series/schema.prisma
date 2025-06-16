@@ -1,0 +1,15 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("SERIES_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../prisma/generated/series"
+}
+
+model Series {
+  id        Int    @id @default(autoincrement())
+  seasons   Int
+  contentId Int
+}

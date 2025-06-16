@@ -1,0 +1,24 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("CONTENT_DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../prisma/generated/contents"
+}
+
+model Content {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  type        String // movie or series
+  createdAt   DateTime @default(now())
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String
+  role     String
+}
